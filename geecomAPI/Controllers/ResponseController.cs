@@ -1,4 +1,5 @@
 ﻿using geecomAPI.data;
+using geecomAPI.dbUtilites;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -14,6 +15,11 @@ namespace geecomAPI.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+
+
+            DbHandler dbh = new DbHandler();
+            dbh.OpenConnection();
+
             return new string[] { "value1", "value2"};
         }
 
