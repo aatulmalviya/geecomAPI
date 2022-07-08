@@ -4,6 +4,6 @@ namespace geecomAPI.businessInterface
 {
     public interface Iquestionnaire
     {
-        public questionMasterDetailModel GetQuestionnior(int orgID, int questionSetID, string userID);
+        public questionniorResponseModel GetQuestionnior(int orgID, int questionSetID, string userID);
     }
 }

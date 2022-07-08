@@ -19,15 +19,20 @@ namespace geecomAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            LoadConfiguration();
         }
+
+        private void LoadConfiguration()
+        {
+            constantProps.dbconn = this.Configuration.GetConnectionString("connection");
+        }
+
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            constantProps.dbconn = this.Configuration.GetConnectionString("connection");
-
             services.AddControllers();
         }
 

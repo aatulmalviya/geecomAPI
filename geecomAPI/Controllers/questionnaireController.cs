@@ -59,7 +59,7 @@ namespace geecomAPI.Controllers
             try
             {
                 questionniorBL objBL = new questionniorBL();
-                questionMasterDetailModel res = objBL.GetQuestionnior(orgID, questionSetID, userID);
+                questionniorResponseModel res = objBL.GetQuestionnior(orgID, questionSetID, userID);
                 if (res != null)
                 {
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, string.Empty, res));
