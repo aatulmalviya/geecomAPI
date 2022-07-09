@@ -314,7 +314,8 @@ namespace geecomAPI.dbUtilites
             MySqlCommand command = new MySqlCommand();
             try
             {
-                command = new MySqlCommand(sp, connection) { CommandType = CommandType.StoredProcedure, CommandTimeout = connection.ConnectionTimeout };
+                command = new MySqlCommand(sp, connection) 
+                { CommandType = CommandType.StoredProcedure, CommandTimeout = connection.ConnectionTimeout };
                 connection.Open();
                 command.Parameters.AddRange(prms);
                 if (null != ds)

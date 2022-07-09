@@ -21,7 +21,7 @@ namespace geecomAPI.dbUtilites.questionnior
 
             // string conStr = Configuration.Instance.AppSettings.FundingShieldConnectionString;
 
-            ds = dbHelper.GetDatasetFromSP(constantProps.dbconn, "usp_get_transaction", lstParam.ToArray());
+            ds = dbHelper.GetDatasetFromSP(constantProps.dbconn, "USPLoadQuestionnaire", lstParam.ToArray());
             return ds;
 
 

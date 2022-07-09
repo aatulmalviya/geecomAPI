@@ -1,3 +1,5 @@
+using geecomAPI.business;
+using geecomAPI.businessInterface;
 using geecomAPI.data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,8 @@ namespace geecomAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<Iquestionnaire, questionniorBL>();
+
             services.AddControllers();
         }
 

@@ -35,7 +35,8 @@ namespace geecomAPI.Model
         public string questionCategoryDesc { get; set; }
         
         public List<questionOptionModel> listquestionOption { get; set; }
-        public List<validationModel> listvalidationMdoel { get; set; }
+        public List<defaultQuestionOptionModel> defauttOptionslist { get; set; }
+        public List<validationModel> listvalidationModel { get; set; }
 
 
     }

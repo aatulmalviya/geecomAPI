@@ -1,4 +1,5 @@
 ﻿using geecomAPI.business;
+using geecomAPI.businessInterface;
 using geecomAPI.data;
 using geecomAPI.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,16 @@ namespace geecomAPI.Controllers
     [ApiController]
     public class questionnaireController : ControllerBase
     {
+
+       private Iquestionnaire _iquestionnaire;
+
+
+        public questionnaireController(Iquestionnaire iquestionnaire)
+        {
+            _iquestionnaire = iquestionnaire;
+        }
+
+
         // GET: api/<questionnaireController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -58,8 +69,9 @@ namespace geecomAPI.Controllers
         {
             try
             {
-                questionniorBL objBL = new questionniorBL();
-                questionniorResponseModel res = objBL.GetQuestionnior(orgID, questionSetID, userID);
+                //questionniorBL objBL = new questionniorBL();
+                
+                questionniorResponseModel res = _iquestionnaire.GetQuestionnior(orgID, questionSetID, userID);
                 if (res != null)
                 {
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, string.Empty, res));
