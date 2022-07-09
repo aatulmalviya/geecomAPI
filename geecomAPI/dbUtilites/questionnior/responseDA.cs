@@ -24,11 +24,30 @@ namespace geecomAPI.dbUtilites.questionnior
 
             dbHelper.ExecuteNonQuery(constantProps.dbconn, "USPAddResponse", lstParam.ToArray());
 
-            string id = DBNull.Value == outParam.Value ? null : outParam.Value.ToString();
-            if (id != null && Convert.ToInt32(id) > 0)
+
+            string responseHeaderID = DBNull.Value == outParam.Value ? null : outParam.Value.ToString();
+            if (responseHeaderID != null && Convert.ToInt32(responseHeaderID) > 0)
             {
-                return id;
+                
+
+                string vaules = "";
+                foreach (var item in farmerQuestionResponse.responseDetailModel)
+                {
+                    vaules = "(" + responseHeaderID + "," + "," + item.questionID + item.response + "," + 1 + "," + item.addUser + ",current_timestamp())" + vaules + ",";
+                }
+
+                string prepSQL = constantProps.bulkInsert + vaules.TrimEnd(',');
+
+                int noOfRowsAffected = dbHelper.ExecuteNonQuery(constantProps.dbconn, prepSQL);
+
+                return responseHeaderID;
+
             }
+
+
+
+
+
             return "";
         }
     }

@@ -141,6 +141,35 @@ namespace geecomAPI.dbUtilites
             }
         }
 
+
+        public static int ExecuteNonQuery(string connectionString, string sql)
+        {
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand command = new MySqlCommand();
+            int rowsaffected = 0;
+            try
+            {
+                command = new MySqlCommand(sql, connection) { CommandType = CommandType.Text, CommandTimeout = connection.ConnectionTimeout };
+                connection.Open();
+                rowsaffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                connection.Close();
+                command.Dispose();
+            }
+            return rowsaffected;
+        }
+
+
+
         public static void ExecuteNonQuery(string connectionString, string sp, MySqlParameter prms)
         {
 
