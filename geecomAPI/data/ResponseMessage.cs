@@ -8,7 +8,7 @@
 
         public const string Loan_No_Status = "Loan Number status.";
 
-        public const string Add_Closing_Agent = "Closing Agent added successfully.";
+        public const string Add_Closing_Agent = "Response Header added successfully.";
 
         public const string Add_Note = "Note added successfully.";
 
@@ -22,7 +22,7 @@
 
         public const string Create_Wired_Account_Fail = "Wired Account not created";
 
-        public const string Add_Closing_Agent_Fail = "Closing Agent not added.";
+        public const string Add_Closing_Agent_Fail = "Header Response not added.";
 
         public const string Convert_Rush_Order = "Order successfully converted to Rush Order.";
 

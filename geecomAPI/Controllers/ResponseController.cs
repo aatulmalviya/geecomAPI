@@ -1,5 +1,7 @@
-﻿using geecomAPI.data;
+﻿using geecomAPI.businessInterface;
+using geecomAPI.data;
 using geecomAPI.dbUtilites;
+using geecomAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,13 @@ namespace geecomAPI.Controllers
     [ApiController]
     public class ResponseController : ControllerBase
     {
+        private Iresponse _iresponse;
+        public ResponseController(Iresponse iresponse)
+        {
+            _iresponse = iresponse;
+        }
+
+
         // GET: api/<ResponseController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -56,18 +65,13 @@ namespace geecomAPI.Controllers
         //[SwaggerOperation("AddNewClosingAgent")]
         //[SwaggerResponse(statusCode: 200, type: typeof(bool), description: "No error, operation successful")]
         //[Authorize]
-        public virtual IActionResult AddNewResponse([FromBody] ClosingAgent body)
+        public virtual IActionResult AddNewResponse([FromBody] farmerQuestionResponse body)
         {
             try
             {
-                //if (!IsRole("Lender,Lender Manager"))
-                //{
-                //    return StatusCode(403);
-                //}
-
-                //MasterDataLoadBL objBL = new MasterDataLoadBL();
-                //bool loanStatus = objBL.AddNewClosingAgent(body);
-                if (loanStatus)
+                bool status = false;
+                status = _iresponse.SaveQuestionniorResponse(body);
+                if (status)
                 {
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, responseMessage.Add_Closing_Agent, loanStatus));
                 }

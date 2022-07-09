@@ -36,6 +36,7 @@ namespace geecomAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<Iquestionnaire, questionniorBL>();
+            services.AddSingleton<Iresponse, responseBL>();
 
             services.AddControllers();
         }

@@ -21,7 +21,7 @@ namespace geecomAPI.Controllers
 
         public questionnaireController(Iquestionnaire iquestionnaire)
         {
-            _iquestionnaire = iquestionnaire;
+            this._iquestionnaire = iquestionnaire;
         }
 
 
@@ -69,21 +69,19 @@ namespace geecomAPI.Controllers
         {
             try
             {
-                //questionniorBL objBL = new questionniorBL();
-                
                 questionniorResponseModel res = _iquestionnaire.GetQuestionnior(orgID, questionSetID, userID);
                 if (res != null)
                 {
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, string.Empty, res));
                 }
                 else
-                    return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, ResponseMessage.No_Records_Found, null));
+                    return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, responseMessage.No_Records_Found, null));
             }
             catch (Exception ex)
             {
                 //Logger.Error("SearchOrder() - Exception occurred : " + ex.ToString());
             }
-            return StatusCode(500, standardResponse.GetInstance(responseStatus.Failed, ResponseMessage.Internal_Exception, null));
+            return StatusCode(500, standardResponse.GetInstance(responseStatus.Failed, responseMessage.Internal_Exception, null));
         }
 
 
