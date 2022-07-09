@@ -1,6 +1,6 @@
 ﻿namespace geecomAPI.data
 {
-    public static class ResponseMessage
+    public static class responseMessage
     {
         public const string Internal_Exception = "Exception has occured while processing this request.";
 

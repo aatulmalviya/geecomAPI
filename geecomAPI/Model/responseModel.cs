@@ -8,11 +8,9 @@ namespace geecomAPI.Model
         public int orgID { get; set; }
         public int farmerID { get; set; }
         public int questionSetID { get; set; }
-
         public string location { get; set; }
         public DateTime addTime { get; set; }
         public string addUser { get; set; }
-
         public DateTime? updateTime { get; set; }
         public string? updateUser { get; set; }
 
