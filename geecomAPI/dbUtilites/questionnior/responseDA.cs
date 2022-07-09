@@ -24,11 +24,6 @@ namespace geecomAPI.dbUtilites.questionnior
 
             dbHelper.ExecuteNonQuery(constantProps.dbconn, "USPAddResponse", lstParam.ToArray());
 
-
-
-
-
-
             string id = DBNull.Value == outParam.Value ? null : outParam.Value.ToString();
             if (id != null && Convert.ToInt32(id) > 0)
             {
