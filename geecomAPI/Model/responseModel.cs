@@ -12,7 +12,7 @@ namespace geecomAPI.Model
         public DateTime addTime { get; set; }
         public string addUser { get; set; }
         public DateTime? updateTime { get; set; }
-        public string? updateUser { get; set; }
+        public string updateUser { get; set; }
 
 
     }
