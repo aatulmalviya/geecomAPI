@@ -12,10 +12,10 @@ namespace geecomAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ResponseController : ControllerBase
+    public class responseController : ControllerBase
     {
         private Iresponse _iresponse;
-        public ResponseController(Iresponse iresponse)
+        public responseController(Iresponse iresponse)
         {
             _iresponse = iresponse;
         }
