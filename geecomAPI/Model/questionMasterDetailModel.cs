@@ -40,4 +40,24 @@ namespace geecomAPI.Model
 
 
     }
+
+
+    public class organizationModel
+    {
+        public int orgID { get; set; }
+        public string orgName { get; set; }
+        public string orgDescription { get; set; }
+    }
+
+    public class formBuilderModel
+    {
+        public string name { get; set; }
+        public string label { get; set; }
+        public string value { get; set; }
+        public string type { get; set; }
+        public List<fromaBuilderOptionModel> options { get; set; }
+        public List<formBuilderValidationModel> validators { get; set; }
+    }
+
+
 }

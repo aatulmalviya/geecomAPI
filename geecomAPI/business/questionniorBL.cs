@@ -11,9 +11,10 @@ namespace geecomAPI.business
 {
     public class questionniorBL : Iquestionnaire
     {
-        public questionniorResponseModel GetQuestionnior(int orgID, int questionSetID, string userID)
+        public formBuilderResponseModel GetQuestionnior(int orgID, int questionSetID, string userID)
         {
             questionniorResponseModel _questionniorResponseModel = null;
+            formBuilderResponseModel _formBuilderResponseModel = null;
 
             DataSet ds = questionniorDA.GetQuestionnior(orgID, questionSetID, userID);
             DataTable dtQuestions = ds.Tables[0];//dtquestions
@@ -25,8 +26,19 @@ namespace geecomAPI.business
             if (dtQuestions != null && dtQuestions.Rows.Count > 0)
             {
                 List<questionMasterDetailModel> lstquestionMasterDetailModel = new List<questionMasterDetailModel>();
+                List<formBuilderModel> lstformBuilderModel = new List<formBuilderModel>();
+
                 foreach (DataRow row in dtQuestions.Rows)
                 {
+                    formBuilderModel fbm = new formBuilderModel();
+
+                    fbm.name = Convert.ToString(row["questionMasterKey"]);
+                    fbm.label = Convert.ToString(row["questionText"]);
+                    fbm.value = "";
+                    fbm.type = Convert.ToString(row["dataType"]);
+
+
+
                     questionMasterDetailModel qmdm = new questionMasterDetailModel();
 
                     qmdm.questionMasterKey = Convert.ToInt32(row["questionMasterKey"]);
@@ -59,7 +71,7 @@ namespace geecomAPI.business
                     qmdm.questionCategoryDesc = Convert.ToString(row["questionCategoryDesc"]);
 
                     List<questionOptionModel> lstquestionOptionModel = new List<questionOptionModel>();
-
+                    List<fromaBuilderOptionModel> lstfromaBuilderOptionModel = new List<fromaBuilderOptionModel>();
 
                     var dtOptionresult = dtOption.AsEnumerable().
                         Where(myRow => myRow.Field<int>("questionMasterKey") == qmdm.questionMasterKey);
@@ -72,6 +84,14 @@ namespace geecomAPI.business
                         qom.optionsValue = item.Field<string>("optionsValue");
 
                         lstquestionOptionModel.Add(qom);
+
+
+                        fromaBuilderOptionModel fbom = new fromaBuilderOptionModel();
+                        fbom.value = item.Field<int>("optionValueID");
+                        fbom.displayValue = item.Field<string>("optionsValue");
+
+                        lstfromaBuilderOptionModel.Add(fbom);
+
                     }
 
 
@@ -93,6 +113,13 @@ namespace geecomAPI.business
                         dqom.defaultOptionsValue = item.Field<string>("defaultOptionsValue");
 
                         listdefauttOptions.Add(dqom);
+
+                        fromaBuilderOptionModel fbom = new fromaBuilderOptionModel();
+                        fbom.value = item.Field<int>("defaultOptionID");
+                        fbom.displayValue = item.Field<string>("defaultOptionsValue");
+
+                        lstfromaBuilderOptionModel.Add(fbom);
+
                     }
 
 
@@ -117,11 +144,14 @@ namespace geecomAPI.business
                     if (lstquestionOptionModel.Count > 0)
                     {
                         qmdm.listquestionOption = lstquestionOptionModel;
+                        fbm.options = lstfromaBuilderOptionModel;
                     }
 
                     if (listdefauttOptions.Count > 0)
                     {
                         qmdm.defauttOptionslist = listdefauttOptions;
+                        fbm.options = lstfromaBuilderOptionModel;
+
                     }
 
                     if (listvalidationModel.Count > 0)
@@ -130,13 +160,19 @@ namespace geecomAPI.business
                     }
 
                     lstquestionMasterDetailModel.Add(qmdm);
-
+                    lstformBuilderModel.Add(fbm);
                 }
 
                 _questionniorResponseModel = new questionniorResponseModel();
                 _questionniorResponseModel._listquestionMasterDetailModel = lstquestionMasterDetailModel;
+
+                _formBuilderResponseModel = new formBuilderResponseModel();
+                _formBuilderResponseModel.controls = lstformBuilderModel;
+
+
             }
-            return _questionniorResponseModel;
+            //return _questionniorResponseModel;
+            return _formBuilderResponseModel;
 
             throw new System.NotImplementedException();
         }

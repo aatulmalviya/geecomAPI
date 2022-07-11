@@ -35,10 +35,20 @@ namespace geecomAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("Cors", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
+
             services.AddSingleton<Iquestionnaire, questionniorBL>();
             services.AddSingleton<Iresponse, responseBL>();
 
+            
+
+
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,11 +59,14 @@ namespace geecomAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("Cors");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

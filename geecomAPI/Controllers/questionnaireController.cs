@@ -69,7 +69,8 @@ namespace geecomAPI.Controllers
         {
             try
             {
-                questionniorResponseModel res = _iquestionnaire.GetQuestionnior(orgID, questionSetID, userID);
+                //questionniorResponseModel res = _iquestionnaire.GetQuestionnior(orgID, questionSetID, userID);
+                formBuilderResponseModel res = _iquestionnaire.GetQuestionnior(orgID, questionSetID, userID);
                 if (res != null)
                 {
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, string.Empty, res));

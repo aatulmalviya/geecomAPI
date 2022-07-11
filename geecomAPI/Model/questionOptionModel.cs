@@ -23,4 +23,11 @@ namespace geecomAPI.Model
 
     }
 
+
+    public class fromaBuilderOptionModel
+    {
+        public int value { get; set; }
+        public string displayValue { get; set; }
+
+    }
 }

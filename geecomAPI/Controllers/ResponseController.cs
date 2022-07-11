@@ -73,7 +73,7 @@ namespace geecomAPI.Controllers
                 status = _iresponse.SaveQuestionniorResponse(body);
                 if (status)
                 {
-                    return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, responseMessage.Add_Closing_Agent, loanStatus));
+                    return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, responseMessage.Add_Closing_Agent, status));
                 }
                 else
                     return StatusCode(200, standardResponse.GetInstance(responseStatus.Success, responseMessage.Add_Closing_Agent_Fail, null));
