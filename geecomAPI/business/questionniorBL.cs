@@ -23,6 +23,9 @@ namespace geecomAPI.business
             DataTable dtValidation = ds.Tables[3];//dtValidation
 
 
+            string orgName = "";
+            string setName = "";
+
             if (dtQuestions != null && dtQuestions.Rows.Count > 0)
             {
                 List<questionMasterDetailModel> lstquestionMasterDetailModel = new List<questionMasterDetailModel>();
@@ -37,17 +40,30 @@ namespace geecomAPI.business
                     fbm.value = "";
                     fbm.type = Convert.ToString(row["dataType"]);
 
+                    if (fbm.type == "range")
+                    { 
+                    }
 
+                    
 
                     questionMasterDetailModel qmdm = new questionMasterDetailModel();
 
                     qmdm.questionMasterKey = Convert.ToInt32(row["questionMasterKey"]);
                     qmdm.orgID = Convert.ToInt32(row["orgID"]);
                     qmdm.orgName = Convert.ToString(row["orgName"]);
+
+                    orgName = Convert.ToString(row["orgName"]);
+
+
                     qmdm.orgDescription = Convert.ToString(row["orgDescription"]);
+
+
+
 
                     qmdm.questionSetID = Convert.ToInt32(row["questionSetID"]);
                     qmdm.setName = Convert.ToString(row["setName"]);
+
+                    setName = Convert.ToString(row["setName"]);
 
                     qmdm.questionID = Convert.ToInt32(row["questionID"]);
                     qmdm.questionText = Convert.ToString(row["questionText"]);
@@ -166,7 +182,10 @@ namespace geecomAPI.business
                 _questionniorResponseModel = new questionniorResponseModel();
                 _questionniorResponseModel._listquestionMasterDetailModel = lstquestionMasterDetailModel;
 
+             
                 _formBuilderResponseModel = new formBuilderResponseModel();
+                _formBuilderResponseModel.titleMsg = orgName + " Questionnaire Set :  " + setName;
+
                 _formBuilderResponseModel.controls = lstformBuilderModel;
 
 

@@ -16,6 +16,8 @@ namespace geecomAPI.Model
     public class formBuilderResponseModel
     {
         public List<formBuilderModel> controls { get; set; }
+        public string  titleMsg { get; set; }
+        
 
         //public List<questionOptionModel> _listquestionOption { get; set; }
         //public List<defaultQuestionOptionModel> _listdefauttOptions { get; set; }

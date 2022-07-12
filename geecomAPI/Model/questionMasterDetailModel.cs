@@ -57,6 +57,9 @@ namespace geecomAPI.Model
         public string type { get; set; }
         public List<fromaBuilderOptionModel> options { get; set; }
         public List<formBuilderValidationModel> validators { get; set; }
+
+
+
     }
 
 
