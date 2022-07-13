@@ -30,13 +30,15 @@ namespace geecomAPI.business
             {
                 List<questionMasterDetailModel> lstquestionMasterDetailModel = new List<questionMasterDetailModel>();
                 List<formBuilderModel> lstformBuilderModel = new List<formBuilderModel>();
-
+                int questionNo = 0;
                 foreach (DataRow row in dtQuestions.Rows)
                 {
-                    formBuilderModel fbm = new formBuilderModel();
+                    questionNo = questionNo + 1;
+
+                     formBuilderModel fbm = new formBuilderModel();
 
                     fbm.name = Convert.ToString(row["questionMasterKey"]);
-                    fbm.label = Convert.ToString(row["questionText"]);
+                    fbm.label = "Q." + questionNo + "." + Convert.ToString(row["questionText"]);
                     fbm.value = "";
                     fbm.type = Convert.ToString(row["dataType"]);
 
